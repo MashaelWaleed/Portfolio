@@ -1,3 +1,6 @@
+/* ==========================================================================
+   1. GLOBAL STYLES & CONFIGURATION
+   ========================================================================== */
 * {
   padding: 0;
   margin: 0;
@@ -16,6 +19,7 @@
   --text-color: white;
   --main-color: #af4eb8;
 }
+
 html {
   font-size: 60%;
   overflow-x: hidden;
@@ -26,12 +30,44 @@ body {
   color: var(--text-color);
 }
 
+section {
+  min-height: 100vh;
+  padding: 10rem 12%;
+}
+
+span {
+  color: var(--main-color);
+}
+
+.heading {
+  font-size: 8rem;
+  text-align: center;
+  margin: 5rem auto;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--main-color);
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--bg-color);
+  width: 15px;
+}
+
+/* ==========================================================================
+   2. LAYOUT HEADER & NAVIGATION
+   ========================================================================== */
 .header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 4rem 12% 4rem;
+  padding: 4rem 12%;
   background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
   display: flex;
@@ -45,7 +81,7 @@ body {
   color: var(--text-color);
   font-weight: 800;
   cursor: pointer;
-  transition: 0.3 ease;
+  transition: 0.3s ease;
 }
 
 .logo:hover {
@@ -53,6 +89,7 @@ body {
 }
 
 .logo span {
+  color: var(--main-color);
   text-shadow: 0 0 25px var(--main-color);
 }
 
@@ -61,7 +98,7 @@ body {
   color: var(--text-color);
   margin-left: 4rem;
   font-weight: 500;
-  transition: 0.3 ease;
+  transition: 0.3s ease;
   border-bottom: 3px solid transparent;
 }
 
@@ -77,11 +114,9 @@ body {
   display: none;
 }
 
-section {
-  min-height: 100vh;
-  padding: 10rem 12%;
-}
-
+/* ==========================================================================
+   3. HOME SECTION
+   ========================================================================== */
 .home {
   display: flex;
   align-items: center;
@@ -97,26 +132,26 @@ section {
   margin-top: 3rem;
 }
 
-span {
-  color: var(--main-color);
-}
-
-.logo span {
-  color: var(--main-color);
-}
-
-.home-content h3 {
-  margin-bottom: 2rm;
-  margin-top: 2rm;
-  font-size: 3.5rem;
-}
-
 .home-content h1 {
   font-size: 7rem;
   font-weight: 700;
   margin-top: 1.5rem;
   line-height: 1;
 }
+
+.home-content h3 {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  font-size: 3.5rem;
+}
+
+.home-content p {
+  font-size: medium;
+  font-weight: 500;
+  line-height: 1.8;
+  max-height: 1000px;
+}
+
 .home-img {
   border-radius: 50%;
 }
@@ -139,13 +174,37 @@ span {
     0 0 100px var(--main-color);
 }
 
-.home-content p {
-  font-size: medium;
-  font-weight: 500;
-  line-height: 1.8;
-  max-height: 1000px;
+/* Text Typing Effects */
+.text-animation {
+  font-size: 34px;
+  font-weight: 600;
+  min-width: 280px;
 }
 
+.text-animation span {
+  position: relative;
+}
+
+.text-animation span::before {
+  content: "Web developer";
+  color: var(--main-color);
+  animation: words 16s infinite;
+}
+
+.text-animation span::after {
+  content: "";
+  background-color: var(--bg-color);
+  position: absolute;
+  width: calc(100% + 8px);
+  height: 100%;
+  border-left: 3px solid var(--main-color);
+  right: -8px;
+  animation:
+    cursor 0.6s infinite,
+    typing 4s steps(20) infinite;
+}
+
+/* Buttons & Socials */
 .social-icons a {
   display: inline-flex;
   justify-content: center;
@@ -207,113 +266,15 @@ span {
   color: black;
 }
 
-.text-animation {
-  /*h3*/
-  font-size: 34px;
-  font-weight: 600;
-  min-width: 280px;
-}
-
-.text-animation span {
-  position: relative;
-}
-
-.text-animation span::before {
-  /*to write*/
-  content: "Web developer";
-  color: var(--main-color);
-  animation: words 16s infinite; /* to change words */
-}
-
-.text-animation span::after {
-  /*to delete*/
-  content: "";
-  background-color: var(--bg-color);
-  position: absolute;
-  width: calc(100% + 8px);
-  height: 100%;
-  border-left: 3px solid var(--main-color);
-  right: -8px;
-  animation:
-    cursor 0.6s infinite,
-    typing 4s steps(20) infinite;
-}
-
-@keyframes cursor {
-  0% {
-    border-left-color: var(--main-color);
-  }
-
-  100% {
-    border-left-color: var(--bg-color);
-  }
-}
-
-/*frame to change words (meaning the original time 20s 
-has been divided to five parts 4s to each word)*/
-@keyframes words {
-  0%,
-  25% {
-    content: "Front-end Designer";
-  }
-
-  26%,
-  50% {
-    content: "Web Designer";
-  }
-
-  51%,
-  75% {
-    content: "UI / UX Designer";
-  }
-
-  76%,
-  100% {
-    content: "Web Dveloper";
-  }
-}
-
-@keyframes typing {
-  /*width the after element*/
-  5%,
-  20%,
-  25%,
-  40%,
-  45%,
-  55%,
-  60%,
-  65%,
-  80%,
-  85% {
-    width: calc(100% * 5px);
-  }
-  10%,
-  15%,
-  30%,
-  35%,
-  50%,
-  55%,
-  70%,
-  75%,
-  90%,
-  95% {
-    width: 0px;
-  }
-}
-
-.heading {
-  font-size: 8rem;
-  text-align: center;
-  margin: 5rem auto;
+/* ==========================================================================
+   4. TIMELINE SYSTEM 
+   ========================================================================== */
+.education {
+  background: var(--second-bg-color);
 }
 
 .education {
   padding: 10%;
-  background: var(--second-bg-color);
-}
-
-.skills {
-  background: var(--second-bg-color);
 }
 
 .education h2 {
@@ -400,6 +361,7 @@ has been divided to five parts 4s to each word)*/
   display: flex;
   flex-direction: column;
 }
+
 #c {
   padding-left: 0;
   padding-right: 0;
@@ -421,21 +383,229 @@ has been divided to five parts 4s to each word)*/
   line-height: 22px;
 }
 
-::-webkit-scrollbar {
-  width: 15px;
+.timeline-content p {
+  margin-bottom: 10px;
+}
+.timeline-content a {
+  display: inline;
+  font-size: 2.4rem;
+  color: var(--second-bg-color);
 }
 
-::-webkit-scrollbar-thumb {
-  background-color: var(--main-color);
+/* ==========================================================================
+   5. PROJECTS CARDS GRID
+   ========================================================================== */
+.projects {
+  background: var(--second-bg-color);
 }
 
-::-webkit-scrollbar-track {
-  background-color: var(--bg-color);
-  width: 15px;
+.projects-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.projects-container .project-box {
+  position: relative;
+  border-radius: 2rem;
+  cursor: pointer;
+  border: 3px solid var(--main-color);
+  box-shadow: 0 0 10px var(--main-color);
+  overflow: hidden;
+  display: flex;
+  height: 250px;
+}
+
+.project-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s ease;
+  opacity: 0.8;
+}
+
+.project-box:hover img {
+  transform: scale(1.1);
+}
+
+.project-box .project-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), var(--main-color));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 4rem;
+  transform: translateY(100%);
+  transition: 0.5s ease;
+}
+
+.project-box:hover .project-layer {
+  transform: translateY(0);
+}
+
+.project-layer h4 {
+  font-size: 3rem;
+  color: #fff;
+  font-weight: 800;
+}
+
+.project-layer p {
+  font-size: 1.4rem;
+  margin: 0.3rem 0 1rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #fff;
+}
+
+.project-layer a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 5rem;
+  height: 5rem;
+  background: var(--text-color);
+  border-radius: 50%;
+}
+
+.project-layer a i {
+  font-size: 2.4rem;
+  color: var(--second-bg-color);
+}
+
+/* ==========================================================================
+   6. COURSES DESIGN
+   ========================================================================== */
+.courses {
+  background: var(--bg-color);
+}
+
+.courses-list {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.course-item {
+  background: var(--second-bg-color);
+  border: 1px solid rgba(175, 78, 184, 0.1);
+  border-radius: 1.5rem;
+  padding: 2.5rem 3.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.4s ease;
+}
+
+.course-item:hover {
+  transform: translateX(10px);
+  border-color: var(--main-color);
+  box-shadow: 0 0 20px rgba(175, 78, 184, 0.15);
+}
+
+.course-main {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.course-icon {
+  font-size: 3.5rem;
+  color: var(--main-color);
+  background: rgba(175, 78, 184, 0.1);
+  padding: 1.2rem;
+  border-radius: 1.2rem;
+  text-shadow: 0 0 10px var(--main-color);
+}
+
+.course-details h3 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 0.8rem;
+}
+
+.platform-tag {
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 0.4rem 1.2rem;
+  border-radius: 2rem;
+  display: inline-block;
+}
+
+/* Platform Distinctive Color Badges */
+.platform-tag.coursera {
+  background: rgba(0, 86, 210, 0.15);
+  color: #3b82f6;
+  border: 1px solid rgba(0, 86, 210, 0.3);
+}
+
+.platform-tag.advice {
+  background: rgba(175, 78, 184, 0.15);
+  color: var(--main-color);
+  border: 1px solid rgba(175, 78, 184, 0.3);
+}
+
+.course-action {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.course-item:hover .course-action {
+  background: var(--main-color);
+  border-color: var(--main-color);
+  color: black;
+  box-shadow: 0 0 15px var(--main-color);
+}
+
+.course-action i {
+  font-size: 2rem;
+}
+
+/* Media Queries for Courses */
+@media (max-width: 768px) {
+  .course-item {
+    padding: 2rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .course-action {
+    align-self: flex-end;
+  }
+
+  .course-item:hover {
+    transform: translateY(-5px);
+  }
+}
+/* ==========================================================================
+   7. SKILLS SECTION
+   ========================================================================== */
+.skills {
+  background: var(--second-bg-color);
 }
 
 .services {
-  background-color: var(--bg-color);
+  background-color: var(--second-bg-color);
   color: black;
 }
 
@@ -448,7 +618,9 @@ has been divided to five parts 4s to each word)*/
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
-  gap: 2.5rem;
+  place-content: center;
+  gap: 3rem;
+  padding: 3rem 5rem;
 }
 
 .service-box {
@@ -457,6 +629,7 @@ has been divided to five parts 4s to each word)*/
   border: 5px solid transparent;
   cursor: pointer;
   transition: 0.4s ease-in-out;
+  padding: 2rem;
 }
 
 .service-box:hover {
@@ -469,11 +642,9 @@ has been divided to five parts 4s to each word)*/
 .service-box .service-info {
   display: flex;
   flex-direction: column;
-  text-emphasis: left;
-  max-height: 200px;
   justify-content: left;
   align-items: baseline;
-  padding: 5rem 5rem;
+  padding: 2rem 2rem;
 }
 
 .service-info h4 {
@@ -486,12 +657,14 @@ has been divided to five parts 4s to each word)*/
 .service-info p {
   font-size: 1.6rem;
   font-weight: 700;
-  max-height: 60px;
   line-height: 1.7;
   margin: auto;
   align-self: center;
 }
 
+/* ==========================================================================
+   8. FOOTER SECTION
+   ========================================================================== */
 .footer {
   background: var(--second-bg-color);
   color: #fff;
@@ -502,8 +675,10 @@ has been divided to five parts 4s to each word)*/
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 40px;
-  max-width: 1100px;
+  max-width: 1400px;
   margin: auto;
+  font-size: 1.6rem;
+  font-weight: 400;
 }
 
 .footer h3,
@@ -514,11 +689,14 @@ has been divided to five parts 4s to each word)*/
 .footer p {
   color: #cbd5e1;
   line-height: 1.6;
+  font-size: 1.2rem;
+  font-weight: 400;
 }
 
 .footer ul {
   list-style: none;
   padding: 0;
+  font-size: 1.2rem;
 }
 
 .footer ul li {
@@ -544,12 +722,77 @@ has been divided to five parts 4s to each word)*/
   color: #94a3b8;
 }
 
+/* ==========================================================================
+   9. ANIMATION DEFINITIONS
+   ========================================================================== */
+@keyframes cursor {
+  0% {
+    border-left-color: var(--main-color);
+  }
+  100% {
+    border-left-color: var(--bg-color);
+  }
+}
+
+@keyframes words {
+  0%,
+  25% {
+    content: "Full-stack Developer";
+  }
+  26%,
+  50% {
+    content: "Web Designer";
+  }
+  51%,
+  75% {
+    content: "UI / UX Designer";
+  }
+  76%,
+  100% {
+    content: "Web Developer";
+  }
+}
+
+@keyframes typing {
+  5%,
+  20%,
+  25%,
+  40%,
+  45%,
+  55%,
+  60%,
+  65%,
+  80%,
+  85% {
+    width: calc(100% * 5px);
+  }
+  10%,
+  15%,
+  30%,
+  35%,
+  50%,
+  55%,
+  70%,
+  75%,
+  90%,
+  95% {
+    width: 0px;
+  }
+}
+
+/* ==========================================================================
+   10. RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
 @media (max-width: 1284px) {
   html {
     font-size: 55%;
   }
   .services-container {
     padding-bottom: 7rem;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0 5rem;
+  }
+  .projects-container {
     grid-template-columns: repeat(2, 1fr);
     margin: 0 5rem;
   }
@@ -562,25 +805,20 @@ has been divided to five parts 4s to each word)*/
   .section {
     padding: 10rem 3% 2rem;
   }
-
   .timeline-items::before {
     left: 7px;
   }
-
   .timeline-item:nth-child(odd) {
     padding-right: 0;
     text-align: left;
   }
-
   .timeline-item:nth-child(odd),
   .timeline-item:nth-child(even) {
     padding-left: 37px;
   }
-
   .timeline-dot {
     left: 0;
   }
-
   .services {
     padding-bottom: 7rem;
   }
@@ -590,7 +828,6 @@ has been divided to five parts 4s to each word)*/
   #menu-icon {
     display: block;
   }
-
   .navbar {
     position: absolute;
     top: 100%;
@@ -604,7 +841,6 @@ has been divided to five parts 4s to each word)*/
     border-bottom: 2px solid var(--main-color);
     display: none;
   }
-
   .navbar.active {
     display: block;
   }
@@ -614,51 +850,45 @@ has been divided to five parts 4s to each word)*/
     margin: 3rem 0;
     color: white;
   }
-
   .home {
     flex-direction: column-reverse;
     margin: 5rem 4rem;
   }
-
-  .home-content h3 {
-    font-size: 2.6rem;
-  }
-
   .home-content h1 {
     font-size: 8rem;
     margin-top: 3rem;
   }
-
+  .home-content h3 {
+    font-size: 2.6rem;
+  }
   .home-content p {
     max-width: 600px;
     margin: 0 auto;
   }
-
   .heading {
     font-size: 4rem;
     text-align: center;
     margin: 5rem auto;
   }
-
+  .projects-container {
+    grid-template-columns: repeat(1, 1fr);
+    margin: 0 1rem;
+  }
   .services h2 {
     margin-bottom: 3rem;
   }
-
   .services-container {
     grid-template-columns: repeat(1, 1fr);
   }
-
   .service-info h4 {
     font-size: 2rem;
     font-weight: 800;
     line-height: 1.6;
     align-self: center;
   }
-
   .service-info p {
     font-size: 1.5rem;
     font-weight: 600;
-    max-height: 60px;
     line-height: 1.4;
     margin: auto;
     align-self: center;
@@ -668,37 +898,30 @@ has been divided to five parts 4s to each word)*/
 @media (max-width: 400px) {
   .services-container {
     padding-bottom: 6rem;
-    margin: 0 3rem;
+    margin: 0 1rem;
   }
-
-  .home-content h3 {
-    font-size: 2.3rem;
-  }
-
   .home-content h1 {
     font-size: 7.5rem;
     margin-top: 2.8rem;
   }
-
+  .home-content h3 {
+    font-size: 2.3rem;
+  }
   .home-content p {
     max-width: 500px;
   }
-
   .heading {
     font-size: 3.5rem;
   }
-
   .service-info h4 {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     font-weight: 750;
     line-height: 1.5;
     align-self: center;
   }
-
   .service-info p {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: 500;
-    max-height: 60px;
     line-height: 1.3;
   }
 }
